@@ -1,0 +1,646 @@
+/* Rainbow OS — mobile-first. Graciela lo va a abrir sobre todo en el celular. */
+
+:root {
+  /* Identidad: naranja, verde y un toque de violeta (elegidos por Santiago el
+     07/11 sobre la paleta del Instagram, ver ../identidad-de-marca.md).
+     Cada color tiene dos tonos: el "-marca" es el del Instagram y va en
+     rellenos y decoración; el base está oscurecido para que el texto blanco
+     encima pase el contraste AA (4,5:1) en botones y títulos. */
+  --c-naranja: #bf530a;
+  --c-naranja-marca: #ffbf4d;
+  --c-naranja-claro: #fff0d4;
+  --c-verde: #2e7d32;
+  --c-verde-marca: #48a838;
+  --c-violeta: #a45486;
+
+  --fondo: #fff8ec;
+  --superficie: #ffffff;
+  --tinta: #2b2b2b;
+  --tinta-suave: #66605a;
+  --borde: #f1e2c6;
+  --alerta: #b4232c;
+
+  --radio: 16px;
+  --sombra: 0 1px 2px rgb(43 43 43 / 6%), 0 6px 20px rgb(43 43 43 / 6%);
+
+  /* Comic Sans donde el sistema la trae (Windows, Mac). En el celular de
+     Graciela (Android/iOS) no existe: ahí entra Comic Neue, su versión libre. */
+  --f-comic: "Comic Sans MS", "Comic Sans", var(--f-comic-neue), "Comic Neue", cursive;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: var(--f-comic);
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+h1,
+h2 {
+  font-family: var(--f-comic);
+  line-height: 1.15;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+code {
+  font-size: 0.9em;
+  background: #f4ede2;
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+}
+
+/* ── Botones y formularios ───────────────────────────────────────────── */
+
+.boton {
+  appearance: none;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.85rem 1.4rem;
+  min-height: 48px;
+  cursor: pointer;
+}
+.boton:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.boton-texto {
+  appearance: none;
+  background: none;
+  border: 0;
+  font: inherit;
+  color: var(--tinta-suave);
+  padding: 0.5rem 0.75rem;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+.formulario {
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+.formulario label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.formulario input {
+  font: inherit;
+  font-weight: 400;
+  padding: 0.75rem 0.9rem;
+  border: 1.5px solid var(--borde);
+  border-radius: 12px;
+  background: #fff;
+  min-height: 48px;
+}
+.formulario input:focus {
+  outline: 3px solid color-mix(in srgb, var(--c-naranja) 35%, transparent);
+  border-color: var(--c-naranja);
+}
+
+.aviso {
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+.aviso-alerta {
+  background: #fdecec;
+  color: var(--alerta);
+}
+
+/* ── Ingreso ─────────────────────────────────────────────────────────── */
+
+.ingreso {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem 1rem;
+}
+.ingreso-tarjeta {
+  width: 100%;
+  max-width: 380px;
+  background: var(--superficie);
+  border-radius: 24px;
+  box-shadow: var(--sombra);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: grid;
+  gap: 0.5rem;
+  justify-items: center;
+}
+.ingreso-tarjeta h1 {
+  font-size: 2.2rem;
+}
+.ingreso-sub {
+  margin: 0 0 1rem;
+  color: var(--tinta-suave);
+}
+.ingreso-tarjeta .formulario {
+  width: 100%;
+}
+
+/* ── Cáscara del SO ──────────────────────────────────────────────────── */
+
+.so {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem 3rem;
+}
+
+.so-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0 0.5rem;
+}
+.so-marca {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--f-comic);
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+
+/* Tira horizontal que se desliza en el celular (no hamburguesa). */
+.so-menu {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0.5rem 0 1rem;
+  margin-inline: -1rem;
+  padding-inline: 1rem;
+}
+.so-menu::-webkit-scrollbar {
+  display: none;
+}
+.so-menu a {
+  --zona: var(--tinta);
+  flex: none;
+  text-decoration: none;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--borde);
+  background: var(--superficie);
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.so-menu a.activo {
+  background: var(--zona);
+  border-color: var(--zona);
+  color: #fff;
+}
+
+.so-contenido {
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ── Inicio ──────────────────────────────────────────────────────────── */
+
+.saludo h1 {
+  font-size: 2rem;
+}
+.saludo p {
+  margin: 0.25rem 0 0;
+  color: var(--tinta-suave);
+}
+
+.zonas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+@media (min-width: 640px) {
+  .zonas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.zona-tarjeta {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  background: var(--superficie);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.1rem 1.2rem 1.2rem;
+  border-top: 6px solid var(--zona);
+  transition: transform 0.15s ease;
+}
+.zona-tarjeta:hover {
+  transform: translateY(-2px);
+}
+.zona-tarjeta h2 {
+  font-size: 1.35rem;
+  color: var(--zona);
+}
+.zona-tarjeta p {
+  margin: 0.35rem 0 0;
+  color: var(--tinta-suave);
+}
+
+/* ── Página de zona ──────────────────────────────────────────────────── */
+
+.zona-pagina h1 {
+  font-size: 2rem;
+  color: var(--zona);
+}
+.zona-resumen {
+  margin: 0.35rem 0 1.25rem;
+  color: var(--tinta-suave);
+}
+.en-construccion {
+  background: var(--superficie);
+  border-radius: var(--radio);
+  border: 2px dashed color-mix(in srgb, var(--zona) 45%, var(--borde));
+  padding: 1.1rem 1.2rem;
+}
+.etiqueta {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--zona);
+}
+.en-construccion ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.3rem;
+}
+
+/* ── Zonas: piezas comunes ───────────────────────────────────────────── */
+
+.zona-titulo {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.zona-titulo h1 {
+  overflow-wrap: anywhere;
+}
+.zona-titulo .zona-resumen {
+  margin-bottom: 1rem;
+}
+.zona-titulo .boton {
+  flex: none;
+}
+
+.boton {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.boton-zona {
+  background: var(--zona, var(--tinta));
+}
+.boton-secundario {
+  background: var(--superficie);
+  color: var(--tinta);
+  border: 1.5px solid var(--borde);
+}
+.boton-texto.chico {
+  min-height: 36px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+}
+.boton-texto.peligro {
+  color: var(--alerta);
+  justify-self: start;
+  padding-left: 0;
+}
+
+.enlace {
+  color: var(--zona, var(--tinta));
+  font-weight: 700;
+  text-decoration: none;
+}
+.volver {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  min-height: 44px;
+  line-height: 44px;
+}
+
+.campo,
+.formulario input:not([type="checkbox"]):not([type="radio"]),
+.formulario select,
+.formulario textarea {
+  font: inherit;
+  font-weight: 400;
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--borde);
+  border-radius: 12px;
+  background: #fff;
+  min-height: 48px;
+  color: var(--tinta);
+}
+.formulario textarea {
+  resize: vertical;
+  line-height: 1.45;
+}
+.campo:focus,
+.formulario select:focus,
+.formulario textarea:focus {
+  outline: 3px solid color-mix(in srgb, var(--zona, var(--c-naranja)) 30%, transparent);
+  border-color: var(--zona, var(--c-naranja));
+}
+
+.filtros {
+  display: grid;
+  gap: 0.6rem;
+}
+@media (min-width: 640px) {
+  .filtros {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.acciones-linea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin: 0.75rem 0;
+}
+
+.casilla {
+  display: flex !important;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 600 !important;
+  min-height: 44px;
+  cursor: pointer;
+}
+.casilla input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--zona, var(--tinta));
+  margin: 0;
+}
+
+.vacio {
+  background: var(--superficie);
+  border-radius: var(--radio);
+  border: 2px dashed var(--borde);
+  padding: 1.25rem;
+  text-align: center;
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+}
+.vacio p {
+  margin: 0;
+  color: var(--tinta-suave);
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.fila {
+  display: grid;
+  gap: 0.1rem;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+  background: var(--superficie);
+  border: 0;
+  border-left: 5px solid var(--zona, var(--borde));
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  padding: 0.8rem 1rem;
+  min-height: 56px;
+  cursor: pointer;
+}
+.fila-titulo {
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.fila-detalle {
+  color: var(--tinta-suave);
+  font-size: 0.92rem;
+}
+
+.chip {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.55rem;
+  border-radius: 999px;
+  background: #f4ede2;
+  color: var(--tinta-suave);
+  font-size: 0.78rem;
+  font-weight: 800;
+  font-family: var(--f-comic);
+  vertical-align: middle;
+}
+
+/* Formularios largos */
+.formulario-ficha,
+.tarjeta-form {
+  background: var(--superficie);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 1.1rem;
+}
+.formulario fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.formulario legend {
+  font-weight: 800;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  padding: 0;
+}
+.opciones {
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+.grupo-campos {
+  border-top: 1.5px solid var(--borde) !important;
+  padding-top: 0.9rem !important;
+}
+.dos-columnas {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 560px) {
+  .dos-columnas {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.botonera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+.campo-fecha {
+  width: auto !important;
+  flex: 1 1 160px;
+}
+
+/* Ficha */
+.ficha {
+  margin: 0;
+  background: var(--superficie);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 0.4rem 1.1rem;
+}
+.ficha > div {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--borde);
+}
+.ficha > div:last-child {
+  border-bottom: 0;
+}
+.ficha dt {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+}
+.ficha dd {
+  margin: 0.15rem 0 0;
+  overflow-wrap: anywhere;
+}
+.ficha a {
+  color: var(--zona);
+  font-weight: 700;
+}
+.bloque {
+  display: block;
+}
+.texto-largo {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.bloque-seccion {
+  display: grid;
+  gap: 0.9rem;
+  margin: 1.5rem 0 0.5rem;
+}
+.bloque-seccion h2 {
+  font-size: 1.45rem;
+  color: var(--zona);
+}
+
+.avances {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.avances li {
+  background: var(--superficie);
+  border-radius: 12px;
+  box-shadow: var(--sombra);
+  padding: 0.6rem 1rem 0.8rem;
+}
+.avances p {
+  margin: 0;
+}
+.avance-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.avance-fecha {
+  font-weight: 800;
+  color: var(--zona);
+  font-size: 0.9rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zona-tarjeta {
+    transition: none;
+  }
+}
+
+/* ── Toque de marca ──────────────────────────────────────────────────── */
+/* Franja con los tres colores bajo la cabecera y bajo la tarjeta de ingreso. */
+.so-cabecera {
+  border-bottom: 0;
+  position: relative;
+}
+.so-cabecera::after,
+.ingreso-tarjeta::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 5px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--c-naranja-marca) 0 45%,
+    var(--c-verde-marca) 45% 85%,
+    var(--c-violeta) 85% 100%
+  );
+}
+.ingreso-tarjeta {
+  position: relative;
+  overflow: hidden;
+}
+.ingreso-tarjeta::before {
+  top: 0;
+  bottom: auto;
+  height: 8px;
+  border-radius: 0;
+}
+.zona-tarjeta {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--zona) 7%, #fff), #fff 60%);
+}
+
+.zona-pagina > h1 {
+  margin-bottom: 1rem;
+}

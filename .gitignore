@@ -1,0 +1,20 @@
+node_modules
+.next
+out
+*.log
+
+# Secrets — nunca subir al repo
+.env
+.env.*
+!.env.example
+
+# Datos de alumnos (muchos son menores): nunca al repo
+backups/
+
+.claude/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+.vscode/*
+.idea
