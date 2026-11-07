@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { getSupabase } from "@/lib/supabase";
-import { COLUMNAS_ALUMNO, COLUMNAS_GRUPO, normalizar, type Alumno, type Grupo } from "@/lib/alumnos";
+import { COLUMNAS_ALUMNO, COLUMNAS_GRUPO, horarioDe, normalizar, type Alumno, type Grupo } from "@/lib/alumnos";
 
 /** Lista de alumnos: buscador, filtro por grupo y acceso a cada ficha. */
 export default function Alumnos() {
@@ -119,7 +119,7 @@ export default function Alumnos() {
               <Link href={`/so/alumnos/${a.id}`} className="fila">
                 <span className="fila-titulo">{a.nombre}</span>
                 <span className="fila-detalle">
-                  {[a.nivel, g ? g.nombre : a.modalidad === "individual" ? "Individual" : "Sin grupo", g?.horario]
+                  {[a.nivel, g ? g.nombre : a.modalidad === "individual" ? "Individual" : "Sin grupo", horarioDe(a, g)]
                     .filter(Boolean)
                     .join(" · ")}
                 </span>

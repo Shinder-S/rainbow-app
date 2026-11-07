@@ -1,6 +1,6 @@
 /** Tipos, formato y validación de la zona Alumnos.
  *
- * Los topes de largo copian los CHECK de `20261107_base.sql`: si la base
+ * Los topes de largo copian los CHECK de las migraciones: si la base
  * rechaza algo, que el formulario lo haya frenado antes y en castellano. */
 
 export type Grupo = {
@@ -18,6 +18,8 @@ export type Alumno = {
   nivel: string | null;
   grupo_id: string | null;
   modalidad: "grupal" | "individual";
+  /** Sólo para individuales; los grupales usan el horario del grupo. */
+  horario: string | null;
   es_menor: boolean;
   objetivo: string | null;
   contacto_nombre: string | null;
@@ -38,6 +40,7 @@ export type Avance = {
 export const TOPES = {
   nombre: 120,
   nivel: 40,
+  horario: 120,
   objetivo: 200,
   contacto_nombre: 120,
   contacto_telefono: 30,
@@ -52,8 +55,14 @@ export const TOPES = {
 /** Columnas que se piden de alumnos (nunca `*`: si mañana se suma una columna
  * sensible, no viaja sola). */
 export const COLUMNAS_ALUMNO =
-  "id, nombre, nivel, grupo_id, modalidad, es_menor, objetivo, contacto_nombre, contacto_telefono, contacto_email, cuota_mensual, notas, activo";
+  "id, nombre, nivel, grupo_id, modalidad, horario, es_menor, objetivo, contacto_nombre, contacto_telefono, contacto_email, cuota_mensual, notas, activo";
 export const COLUMNAS_GRUPO = "id, nombre, nivel, horario, notas, activo";
+
+/** El horario que corresponde mostrar: el propio si es individual, el del
+ * grupo si es grupal. */
+export function horarioDe(alumno: Pick<Alumno, "modalidad" | "horario">, grupo: Grupo | null | undefined): string | null {
+  return alumno.modalidad === "individual" ? alumno.horario : (grupo?.horario ?? null);
+}
 
 /** Texto vacío → null, para no guardar "" en la base. */
 export function textoONull(v: string): string | null {

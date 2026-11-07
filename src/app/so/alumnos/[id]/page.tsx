@@ -11,6 +11,7 @@ import {
   TOPES,
   formatoFecha,
   formatoPesos,
+  horarioDe,
   hoyAR,
   linkWhatsApp,
   mensajeError,
@@ -106,6 +107,7 @@ export default function FichaAlumno() {
   }
 
   const grupo = alumno.grupo_id ? grupos.find((g) => g.id === alumno.grupo_id) : null;
+  const horario = horarioDe(alumno, grupo);
   const wa = linkWhatsApp(alumno.contacto_telefono);
 
   return (
@@ -148,10 +150,10 @@ export default function FichaAlumno() {
       ) : (
         <>
           <dl className="ficha">
-            {grupo?.horario && (
+            {horario && (
               <div>
                 <dt>Horario</dt>
-                <dd>{grupo.horario}</dd>
+                <dd>{horario}</dd>
               </div>
             )}
             {alumno.objetivo && (

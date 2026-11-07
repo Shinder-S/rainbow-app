@@ -10,6 +10,7 @@ const VACIO: DatosAlumno = {
   nivel: null,
   grupo_id: null,
   modalidad: "grupal",
+  horario: null,
   es_menor: true,
   objetivo: null,
   contacto_nombre: null,
@@ -39,6 +40,7 @@ export function AlumnoForm({
   const [nivel, setNivel] = useState(base.nivel ?? "");
   const [grupoId, setGrupoId] = useState(base.grupo_id ?? "");
   const [modalidad, setModalidad] = useState(base.modalidad);
+  const [horario, setHorario] = useState(base.horario ?? "");
   const [esMenor, setEsMenor] = useState(base.es_menor);
   const [objetivo, setObjetivo] = useState(base.objetivo ?? "");
   const [contactoNombre, setContactoNombre] = useState(base.contacto_nombre ?? "");
@@ -64,6 +66,8 @@ export function AlumnoForm({
       // Individual no tiene grupo, aunque haya quedado uno elegido.
       grupo_id: modalidad === "individual" ? null : grupoId || null,
       modalidad,
+      // Y grupal no tiene horario propio: usa el del grupo.
+      horario: modalidad === "individual" ? textoONull(horario) : null,
       es_menor: esMenor,
       objetivo: textoONull(objetivo),
       contacto_nombre: textoONull(contactoNombre),
@@ -114,6 +118,18 @@ export function AlumnoForm({
                 </option>
               ))}
           </select>
+        </label>
+      )}
+
+      {modalidad === "individual" && (
+        <label>
+          Horario
+          <input
+            maxLength={TOPES.horario}
+            placeholder="Ej.: martes 17:30"
+            value={horario}
+            onChange={(e) => setHorario(e.target.value)}
+          />
         </label>
       )}
 
