@@ -280,14 +280,13 @@
   border: 6px solid var(--c-violeta);
   display: block;
 }
-.l-foto-vertical img {
-  width: 100%;
-  max-width: 340px;
-  height: auto;
-  border-radius: 24px;
-  border: 6px solid var(--c-naranja-marca);
-  display: block;
-  margin: 0 auto;
+/* Exámenes: sin foto, a pedido de Graciela (14/11). */
+.l-examenes p {
+  max-width: 640px;
+  margin: 0 0 0.75rem;
+}
+.l-examenes .l-acciones {
+  margin-top: 0.5rem;
 }
 
 /* Contacto */

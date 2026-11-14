@@ -17,11 +17,11 @@ const INSTAGRAM = "https://www.instagram.com/rainbowenglish_school/";
 export const metadata: Metadata = {
   title: "Rainbow English School · Instituto de inglés en Tandil",
   description:
-    "Clases de inglés en Tandil para chicos, adolescentes y adultos. Grupos de hasta 8 alumnos, preparación para exámenes internacionales y apoyo escolar. Presencial y online.",
+    "Clases de inglés en Tandil para chicos, adolescentes y adultos. Grupos reducidos de hasta 8 alumnos, preparación de exámenes y apoyo escolar en primaria y secundaria. Presencial y online.",
   robots: { index: true, follow: true },
   openGraph: {
     title: "Rainbow English School",
-    description: "Instituto de inglés en Tandil. Grupos chicos, todas las edades y exámenes internacionales.",
+    description: "Instituto de inglés en Tandil. Grupos reducidos, todas las edades, exámenes y apoyo escolar.",
     images: [{ url: "/og.jpg", width: 1200, height: 630 }],
     locale: "es_AR",
     type: "website",
@@ -41,7 +41,7 @@ const ACTIVIDADES = [
   { src: "/fotos/07-manualidades.jpg", w: 1599, h: 899, texto: "Proyectos y manualidades" },
   { src: "/fotos/09-salida-al-parque.jpg", w: 768, h: 1024, texto: "Salidas en grupo" },
   { src: "/fotos/05-pizarron-sonrisas.jpg", w: 1600, h: 1200, texto: "Al pizarrón" },
-  { src: "/fotos/13-grupo-reducido-mesa.jpg", w: 1600, h: 1200, texto: "Grupos chicos" },
+  { src: "/fotos/13-grupo-reducido-mesa.jpg", w: 1600, h: 1200, texto: "Grupos reducidos" },
 ];
 
 export default function Landing() {
@@ -62,9 +62,10 @@ export default function Landing() {
         <section id="inicio" className="l-portada">
           <div className="l-portada-texto">
             <p className="l-sobretitulo">Rainbow English School · Tandil</p>
-            <h1>Aprendé inglés en grupos chicos, con una profe que te conoce</h1>
+            <h1>Aprendé inglés en grupos reducidos</h1>
             <p className="l-bajada">
-              Clases para chicos, adolescentes y adultos. Exámenes internacionales y apoyo para rendir en la escuela.
+              Clases para chicos, adolescentes y adultos. Preparación de exámenes y apoyo escolar en todos los niveles,
+              de primaria y de secundaria.
             </p>
             <div className="l-acciones">
               <a href={WHATSAPP} className="l-boton" target="_blank" rel="noopener noreferrer">
@@ -103,9 +104,9 @@ export default function Landing() {
 
         {/* ── Las clases ────────────────────────────────────────────── */}
         <section id="clases" className="l-seccion">
-          <h2>Cómo son las clases</h2>
+          <h2>¿Cómo son las clases?</h2>
           <p className="l-intro">
-            Se aprende hablando, jugando y haciendo: cocinamos, presentamos frente a la clase, festejamos y salimos en
+            Se aprende hablando, jugando y practicando: cocinamos, presentamos frente a la clase, festejamos y salimos en
             grupo. Todo en inglés.
           </p>
           <ul className="l-galeria">
@@ -137,7 +138,7 @@ export default function Landing() {
           <div>
             <h2>Hablar en inglés, de verdad</h2>
             <p>
-              Los alumnos preparan presentaciones y las cuentan frente al grupo. Así ganan vocabulario, pierden la
+              Los alumnos realizan presentaciones y las muestran frente a su grupo. Así ganan vocabulario, pierden la
               vergüenza y se animan a hablar.
             </p>
           </div>
@@ -155,31 +156,23 @@ export default function Landing() {
             />
           </div>
           <div>
-            <h2>Quién enseña</h2>
+            <h2>¿Quién enseña?</h2>
             <p>
-              Soy Graciela y enseño inglés desde 2009: primero en Gardey y hoy en Tandil. Doy todas las clases yo, así
-              que conozco a cada alumno, cómo aprende y en qué necesita una mano.
+              Soy Graciela y enseño inglés desde el año 1983. Rainbow comenzó allá por el 2009 en la localidad de
+              Gardey. Desde hace 6 años, sólo en Tandil.
             </p>
+            <p>Doy todas las clases yo, así que conozco a cada alumno, cómo aprende y en qué necesita una mano.</p>
           </div>
         </section>
 
         {/* ── Exámenes ──────────────────────────────────────────────── */}
-        <section className="l-seccion l-dos">
-          <div className="l-foto-vertical">
-            <Image
-              src="/fotos/10-certificado.jpg"
-              alt="Una alumna muestra su certificado frente al logo de Rainbow"
-              width={1200}
-              height={1600}
-              sizes="(min-width: 900px) 30vw, 70vw"
-            />
-          </div>
-          <div>
-            <h2>¿Tenés que rendir inglés?</h2>
-            <p>
-              Preparamos exámenes internacionales para certificar el nivel, y también damos apoyo a quien tiene que
-              rendir inglés en la escuela.
-            </p>
+        <section className="l-seccion l-examenes">
+          <h2>¿Tenés que rendir un examen?</h2>
+          <p>Te ayudo en la preparación del examen que necesites rendir.</p>
+          <p>
+            Y también doy apoyo escolar en todos los niveles, tanto de primaria como de secundaria.
+          </p>
+          <div className="l-acciones">
             <a href={WHATSAPP} className="l-boton" target="_blank" rel="noopener noreferrer">
               Consultá por tu examen
             </a>
