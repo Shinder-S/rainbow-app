@@ -148,26 +148,39 @@ export default function Landing() {
         </section>
 
         {/* ── Presentaciones ────────────────────────────────────────── */}
-        {/* Con sonido y controles: Graciela quiere que se escuche a las alumnas hablando (14/11). */}
-        <section className="l-seccion l-dos l-dos-video">
-          <figure className="l-video">
-            <video
-              src="/fotos/video-presentacion-ingles.mp4"
-              poster="/fotos/video-presentacion-ingles.jpg"
-              controls
-              playsInline
-              preload="metadata"
-              aria-label="Dos alumnas presentan en inglés un proyecto frente a la clase"
-            />
-            <figcaption>Dos alumnas presentan su proyecto. Dale play con sonido.</figcaption>
-          </figure>
-          <div>
-            <h2>Hablar en inglés, de verdad</h2>
-            <p>
-              Los alumnos preparan presentaciones y las muestran frente a su grupo. Así ganan vocabulario, pierden la
-              vergüenza y se animan a hablar.
-            </p>
+        {/* Con sonido y controles: Graciela quiere que se escuche a las alumnas hablando (14/11).
+            Los nombres que dicen las alumnas no se escuchan: un video arranca después y en el otro van en silencio. */}
+        <section className="l-seccion">
+          <h2>Hablar en inglés, de verdad</h2>
+          <p className="l-intro">
+            Los alumnos preparan presentaciones y las muestran frente a su grupo. Así ganan vocabulario, pierden la
+            vergüenza y se animan a hablar.
+          </p>
+          <div className="l-videos">
+            <figure className="l-video">
+              <video
+                src="/fotos/video-dialogo-en-ingles.mp4"
+                poster="/fotos/video-dialogo-en-ingles.jpg"
+                controls
+                playsInline
+                preload="metadata"
+                aria-label="Dos nenas charlan en inglés con sus carpetas"
+              />
+              <figcaption>Las más chicas charlan en inglés</figcaption>
+            </figure>
+            <figure className="l-video">
+              <video
+                src="/fotos/video-presentacion-ingles.mp4"
+                poster="/fotos/video-presentacion-ingles.jpg"
+                controls
+                playsInline
+                preload="metadata"
+                aria-label="Dos alumnas presentan en inglés un proyecto frente a la clase"
+              />
+              <figcaption>Las más grandes presentan su proyecto</figcaption>
+            </figure>
           </div>
+          <p className="l-nota">Dale play con sonido.</p>
         </section>
 
         {/* ── Quién enseña ──────────────────────────────────────────── */}

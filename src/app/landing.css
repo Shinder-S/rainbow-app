@@ -262,14 +262,26 @@
     order: 2;
   }
 }
-/* Video apaisado y con sonido: le damos más ancho que al texto. */
-@media (min-width: 900px) {
-  .l-dos-video {
-    grid-template-columns: 3fr 2fr;
+/* Videos apaisados y con sonido: uno abajo del otro en el celular, lado a lado en la compu. */
+.l-videos {
+  display: grid;
+  gap: 1.25rem;
+}
+@media (min-width: 760px) {
+  .l-videos {
+    grid-template-columns: 1fr 1fr;
   }
 }
 .l-video {
   margin: 0;
+}
+.l-video + .l-video video {
+  border-color: var(--c-naranja-marca);
+}
+.l-nota {
+  margin: 0.75rem 0 0;
+  text-align: center;
+  font-weight: 700;
 }
 .l-video video {
   width: 100%;
