@@ -7,8 +7,10 @@ import "./landing.css";
 /** Landing pública del instituto (zona Creación).
  *
  * Fotos: hay permiso de las familias para mostrar a los chicos (07/11/2026).
- * Igual van sin nombres, y sin EXIF porque WhatsApp los borra. Los datos de
- * contacto son los que el instituto ya publica en sus piezas de Instagram. */
+ * Igual van sin nombres (en los certificados están borroneados), y sin EXIF. El
+ * video de las presentaciones arranca después de que las alumnas dicen sus
+ * nombres. Los datos de contacto son los que el instituto ya publica en sus
+ * piezas de Instagram. */
 
 const WHATSAPP = "https://wa.me/5492494373251?text=" +
   encodeURIComponent("¡Hola! Quería consultar por las clases de inglés en Rainbow.");
@@ -17,7 +19,7 @@ const INSTAGRAM = "https://www.instagram.com/rainbowenglish_school/";
 export const metadata: Metadata = {
   title: "Rainbow English School · Instituto de inglés en Tandil",
   description:
-    "Clases de inglés en Tandil para chicos, adolescentes y adultos. Grupos reducidos de hasta 8 alumnos, preparación de exámenes y apoyo escolar en primaria y secundaria. Presencial y online.",
+    "Clases de inglés en Tandil para niños, adolescentes y adultos. Grupos reducidos de hasta 8 alumnos, exámenes internacionales y apoyo para rendir en cualquier nivel escolar, de primaria y de secundaria. Presencial y online.",
   robots: { index: true, follow: true },
   openGraph: {
     title: "Rainbow English School",
@@ -30,7 +32,7 @@ export const metadata: Metadata = {
 
 const RAZONES = [
   { titulo: "Grupos de hasta 8", texto: "Cada alumno participa y tiene seguimiento. También hay clases individuales.", color: "naranja" },
-  { titulo: "Todas las edades", texto: "Chicos, adolescentes y adultos, cada uno en su nivel.", color: "verde" },
+  { titulo: "Todas las edades", texto: "Niños, adolescentes y adultos, cada uno en su nivel.", color: "verde" },
   { titulo: "Exámenes internacionales", texto: "Preparación para rendir y certificar tu nivel de inglés.", color: "violeta" },
   { titulo: "Presencial y online", texto: "En el instituto, en Tandil, o desde tu casa.", color: "naranja" },
 ] as const;
@@ -42,6 +44,30 @@ const ACTIVIDADES = [
   { src: "/fotos/09-salida-al-parque.jpg", w: 768, h: 1024, texto: "Salidas en grupo" },
   { src: "/fotos/05-pizarron-sonrisas.jpg", w: 1600, h: 1200, texto: "Al pizarrón" },
   { src: "/fotos/13-grupo-reducido-mesa.jpg", w: 1600, h: 1200, texto: "Grupos reducidos" },
+];
+
+const CERTIFICADOS = [
+  {
+    src: "/fotos/18-entrega-de-certificados.jpg",
+    w: 1040,
+    h: 780,
+    texto: "Entrega de certificados",
+    alt: "Graciela con cinco alumnas que muestran sus certificados, frente a una pared con los colores del arcoíris",
+  },
+  {
+    src: "/fotos/17-certificados-internacionales.jpg",
+    w: 1600,
+    h: 900,
+    texto: "Certificados internacionales",
+    alt: "Seis alumnos muestran su certificado internacional de inglés",
+  },
+  {
+    src: "/fotos/19-cierre-de-ano.jpg",
+    w: 1600,
+    h: 900,
+    texto: "Cierre de año",
+    alt: "Graciela con todo el grupo de alumnos, varios con gorro de Papá Noel, en el cierre de año",
+  },
 ];
 
 export default function Landing() {
@@ -64,8 +90,8 @@ export default function Landing() {
             <p className="l-sobretitulo">Rainbow English School · Tandil</p>
             <h1>Aprendé inglés en grupos reducidos</h1>
             <p className="l-bajada">
-              Clases para chicos, adolescentes y adultos. Preparación de exámenes y apoyo escolar en todos los niveles,
-              de primaria y de secundaria.
+              Clases para niños, adolescentes y adultos. Exámenes internacionales y apoyo para rendir en cualquier nivel
+              escolar, de primaria y de secundaria.
             </p>
             <div className="l-acciones">
               <a href={WHATSAPP} className="l-boton" target="_blank" rel="noopener noreferrer">
@@ -106,8 +132,8 @@ export default function Landing() {
         <section id="clases" className="l-seccion">
           <h2>¿Cómo son las clases?</h2>
           <p className="l-intro">
-            Se aprende hablando, jugando y practicando: cocinamos, presentamos frente a la clase, festejamos y salimos en
-            grupo. Todo en inglés.
+            Se aprende hablando, jugando y practicando: cocinamos, realizamos presentaciones frente a la clase,
+            festejamos y salimos en grupo. Todo en inglés.
           </p>
           <ul className="l-galeria">
             {ACTIVIDADES.map((a) => (
@@ -122,23 +148,23 @@ export default function Landing() {
         </section>
 
         {/* ── Presentaciones ────────────────────────────────────────── */}
-        <section className="l-seccion l-dos">
-          <div className="l-video">
+        {/* Con sonido y controles: Graciela quiere que se escuche a las alumnas hablando (14/11). */}
+        <section className="l-seccion l-dos l-dos-video">
+          <figure className="l-video">
             <video
-              src="/fotos/video-presentacion-pizarron.mp4"
-              poster="/fotos/video-poster.jpg"
-              autoPlay
-              muted
-              loop
+              src="/fotos/video-presentacion-ingles.mp4"
+              poster="/fotos/video-presentacion-ingles.jpg"
+              controls
               playsInline
               preload="metadata"
-              aria-label="Una alumna presenta en inglés frente al pizarrón"
+              aria-label="Dos alumnas presentan en inglés un proyecto frente a la clase"
             />
-          </div>
+            <figcaption>Dos alumnas presentan su proyecto. Dale play con sonido.</figcaption>
+          </figure>
           <div>
             <h2>Hablar en inglés, de verdad</h2>
             <p>
-              Los alumnos realizan presentaciones y las muestran frente a su grupo. Así ganan vocabulario, pierden la
+              Los alumnos preparan presentaciones y las muestran frente a su grupo. Así ganan vocabulario, pierden la
               vergüenza y se animan a hablar.
             </p>
           </div>
@@ -167,16 +193,38 @@ export default function Landing() {
 
         {/* ── Exámenes ──────────────────────────────────────────────── */}
         <section className="l-seccion l-examenes">
-          <h2>¿Tenés que rendir un examen?</h2>
-          <p>Te ayudo en la preparación del examen que necesites rendir.</p>
-          <p>
-            Y también doy apoyo escolar en todos los niveles, tanto de primaria como de secundaria.
-          </p>
-          <div className="l-acciones">
-            <a href={WHATSAPP} className="l-boton" target="_blank" rel="noopener noreferrer">
-              Consultá por tu examen
-            </a>
+          <div className="l-dos">
+            <div className="l-foto-vertical">
+              <Image
+                src="/fotos/10-examen-en-clase.jpg"
+                alt="Un alumno resuelve un examen en el aula de Rainbow"
+                width={899}
+                height={1199}
+                sizes="(min-width: 900px) 30vw, 80vw"
+              />
+            </div>
+            <div>
+              <h2>¿Tenés que rendir un examen?</h2>
+              <p>Te ayudo en la preparación del examen que necesites rendir.</p>
+              <p>Y también doy apoyo escolar en todos los niveles, tanto de primaria como de secundaria.</p>
+              <div className="l-acciones">
+                <a href={WHATSAPP} className="l-boton" target="_blank" rel="noopener noreferrer">
+                  Consultá por tu examen
+                </a>
+              </div>
+            </div>
           </div>
+          <h3>Alumnos que ya rindieron</h3>
+          <ul className="l-galeria l-galeria-certificados">
+            {CERTIFICADOS.map((c) => (
+              <li key={c.src}>
+                <figure>
+                  <Image src={c.src} alt={c.alt} width={c.w} height={c.h} sizes="(min-width: 640px) 33vw, 100vw" />
+                  <figcaption>{c.texto}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </section>
 
         {/* ── Contacto ──────────────────────────────────────────────── */}
